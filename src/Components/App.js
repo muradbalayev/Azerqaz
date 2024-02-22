@@ -1,8 +1,11 @@
 import React from 'react'
-
+import Login from './Login/Login'
+import "./App.css"
 function App() {
   return (
-    <div><h2>Salam</h2></div>
+<>
+<Login/>
+</>
   )
 }
 
