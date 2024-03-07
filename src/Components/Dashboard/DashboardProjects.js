@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ProjectProducts from './ProjectProducts/ProjectProducts';
+import ProjectProducts from './CRUD/ProjectProducts';
 import axios from 'axios';
 
 const DashboardProjects = () => {
@@ -9,7 +9,7 @@ const DashboardProjects = () => {
   const pagesLimit = 10;
   
   const fetchData = () => {
-    return axios.get('https://jealous-curvy-beginner.glitch.me/products');
+    return axios.get('https://dummyjson.com/products');
   };
 
   useEffect(() => {

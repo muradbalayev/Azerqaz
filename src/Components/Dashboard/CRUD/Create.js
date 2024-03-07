@@ -1,8 +1,8 @@
 import axios from 'axios'
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2';
-const DashboardCrud = () => {
+const DashboardCreate = () => {
     const [newData, setNewData] = useState({
         title: '',
         price: '',
@@ -41,10 +41,10 @@ const DashboardCrud = () => {
             return;
         }
 
-        axios.post('https://jealous-curvy-beginner.glitch.me/products', newData)
+        axios.post('https://dummyjson.com/products', newData)
             .then(response => {
                 console.log('Product added successfully:', response.data);
-                navigate('/dashboard/projects'); // Redirect to '/dashboard/projects' upon successful submission
+                navigate('/dashboard/projects'); 
                 Swal.fire({
                     title: "Yadda Saxlanıldı!",
                     icon: "success"
@@ -55,6 +55,11 @@ const DashboardCrud = () => {
                 alert('Xeta.');
             });
     };
+
+
+    const handleBack = () => {
+        navigate('/dashboard/projects')
+    }
 
 
     const isFormValid = newData.title && newData.price && newData.brand && newData.category && newData.rating && newData.stock;
@@ -148,11 +153,11 @@ const DashboardCrud = () => {
                     </div>
                 </div>
                 <div className='card-footer d-flex justify-content-between'>
-                    <button className='btn btn-outline-danger d-flex align-items-center'>
-                        <Link to={"/dashboard/projects"}
-                            style={{ textDecoration: 'none', color: 'inherit' }}>Geri</Link>
+                <button onClick={handleBack}
+                     className='btn btn-outline-danger d-flex align-items-center'>
+                      Geri
                     </button>
-                    <button disabled={!isFormValid} type='button' onClick={handleSave} className='btn btn-outline-success d-flex align-items-center '>
+                    <button disabled={!isFormValid} type='button' onClick={handleSave} className='btn btn-outline-success d-flex align-items-center py-2'>
                         Save
                     </button>
                 </div>
@@ -161,4 +166,4 @@ const DashboardCrud = () => {
     )
 }
 
-export default DashboardCrud
+export default DashboardCreate

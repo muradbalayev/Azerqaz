@@ -7,7 +7,10 @@ import { useEffect } from 'react';
 import { useRef } from 'react';
 import DashboardMain from './DashboardMain';
 import DashboardProjects from './DashboardProjects';
-import DashboardCrud from './DashboardCrud';
+import DashboardCreate from './CRUD/Create';
+import DashboardUpdate from './CRUD/Update';
+import Table from './Table/Table';
+import TableUpdate from './Table/TableCRUD/Update';
 
 function DashboardBody() {
     const [profile, setProfile] = useState(false)
@@ -67,7 +70,10 @@ function DashboardBody() {
         <Routes>
             <Route path='/' element={<DashboardMain />} />
             <Route path='projects' element={<DashboardProjects />} />
-          <Route path='projects/crud' element={<DashboardCrud/>} />
+          <Route path='projects/create' element={<DashboardCreate/>} />
+          <Route path='projects/update/:id' element={<DashboardUpdate/>} />
+          <Route path='table' element={<Table/>} />
+          <Route path='table/update/:userid' element={<TableUpdate/>} />
           </Routes>
         </div>
       </main>

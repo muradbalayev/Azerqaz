@@ -5,7 +5,10 @@ import Success from "../Pages/Success";
 import Dashboard from "../Pages/Dashboard";
 import DashboardProjects from "../Dashboard/DashboardProjects";
 import DashboardMain from "../Dashboard/DashboardMain";
-import DashboardCrud from "../Dashboard/DashboardCrud";
+import DashboardCreate from "../Dashboard/CRUD/Create";
+import DashboardUpdate from "../Dashboard/CRUD/Update";
+import Table from "../Dashboard/Table/Table";
+import TableUpdate from "../Dashboard/Table/TableCRUD/Update";
 export const RouterApp = createBrowserRouter([
   {
     path: "/",
@@ -33,8 +36,20 @@ export const RouterApp = createBrowserRouter([
         element: <DashboardProjects />
       },
       {
-        path: 'projects/crud',
-        element: <DashboardCrud />
+        path: 'projects/create',
+        element: <DashboardCreate />
+      },
+      {
+        path: 'projects/update/:id',
+        element: <DashboardUpdate/>
+      },
+      {
+        path: 'table',
+        element: <Table/>
+      },
+      {
+        path: 'table/update/:userid',
+        element: <TableUpdate/>
       }
 
     ],

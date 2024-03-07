@@ -4,15 +4,14 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
 
-const MyVerticallyCenteredModal = ( props ) => {
+const ReadModal = ( props ) => {
     const [product, setProduct] = useState([]);
     const [renderModal, setRenderModal] = useState(false)
 const {show, onHide, productid} = props 
 
 useEffect(() => {
   if (productid) {
-    console.log("test")
-    axios.get(`https://jealous-curvy-beginner.glitch.me/products/${productid}`)
+    axios.get(`https://dummyjson.com/products/${productid}`)
       .then(response => {
         setRenderModal(true); 
         const productData = response.data.products || response.data;
@@ -52,7 +51,7 @@ backdropClassName="custom-backdrop"
           <div className='d-flex flex-column justify-content-center'>
             <p>{product.description}</p>
             <p>Price: {product.price}</p>
-            <p>Discount: {product.discountPercentage}%</p>
+            <p>Discount: {product.discount}%</p>
             <p>Rating: {product.rating}</p>
             <p>Stock: {product.stock}</p>
             <p>Brand: {product.brand}</p>
@@ -70,4 +69,4 @@ backdropClassName="custom-backdrop"
   )
 }
 
-export default MyVerticallyCenteredModal
+export default ReadModal
