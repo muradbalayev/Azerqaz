@@ -12,9 +12,6 @@ import axios from 'axios'
 
 function RegisterForm() {
 
-    // const [email, setEmail] = useState('')
-    // const [password, setPassword] = useState('')
-
   const [values, setValues] = useState({
     name: '', 
     password: ''
@@ -31,10 +28,7 @@ function RegisterForm() {
     e.preventDefault();
     setError(Validation(values));
 
-//     const handleClear = () => {
-// values.name=""
-// values.password=""
-//     }
+
 
 const payload = {
     email: values.name,
@@ -44,14 +38,12 @@ const payload = {
 
     try {
          await axios.post('https://api.getpostman.com/collections',payload)
-  //  handleClear()
         } catch (error) {
 return error
     }
 
   }
 
-//   const { handleChange, handleSubmit, errors, values } = props
   const [type, setType] = useState(false)
 
   return (

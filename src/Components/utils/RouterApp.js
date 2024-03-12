@@ -7,8 +7,12 @@ import DashboardProjects from "../Dashboard/DashboardProjects";
 import DashboardMain from "../Dashboard/DashboardMain";
 import DashboardCreate from "../Dashboard/CRUD/Create";
 import DashboardUpdate from "../Dashboard/CRUD/Update";
-import Table from "../Dashboard/Table/Table";
-import TableUpdate from "../Dashboard/Table/TableCRUD/Update";
+import UserCreate from "../Dashboard/Table/TableCRUD/Create";
+import UsersTable from "../Dashboard/Table/Table";
+import UserUpdate from "../Dashboard/Table/TableCRUD/Update";
+import PostCreate from "../Dashboard/Cards/Create";
+import PostsTable from "../Dashboard/Cards/PostTable";
+import PostUpdate from "../Dashboard/Cards/Update";
 export const RouterApp = createBrowserRouter([
   {
     path: "/",
@@ -28,7 +32,7 @@ export const RouterApp = createBrowserRouter([
     element: <Dashboard />,
     children: [
       {
-        path: '',
+        path: 'home',
         element: <DashboardMain />,
       },
       {
@@ -41,15 +45,31 @@ export const RouterApp = createBrowserRouter([
       },
       {
         path: 'projects/update/:id',
-        element: <DashboardUpdate/>
+        element: <DashboardUpdate />
       },
       {
-        path: 'table',
-        element: <Table/>
+        path: 'users',
+        element: <UsersTable />
       },
       {
-        path: 'table/update/:userid',
-        element: <TableUpdate/>
+        path: 'users/create',
+        element: <UserCreate />
+      },
+      {
+        path: 'users/update/:userid',
+        element: <UserUpdate />
+      },
+      {
+        path: 'posts',
+        element: <PostsTable />
+      },
+      {
+        path: 'posts/create',
+        element: <PostCreate />
+      },
+      {
+        path: 'posts/update/:postId',
+        element: <PostUpdate />
       }
 
     ],

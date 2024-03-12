@@ -43,7 +43,7 @@ function LoginForm() {
     .post("https://dummyjson.com/auth/login", payload)
     .then(response => {
       console.log(response.data);
-      navigate("/dashboard");
+      navigate("/dashboard/home");
     })
     .catch(error => {
       console.error(error);

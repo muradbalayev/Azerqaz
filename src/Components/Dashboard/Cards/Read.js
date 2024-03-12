@@ -5,17 +5,17 @@ import Modal from 'react-bootstrap/Modal';
 
 
 const ReadModal = (props) => {
-  const [user, setUser] = useState([]);
+  const [post, setPost] = useState([]);
   const [renderModal, setRenderModal] = useState(false)
   const { show, onHide, id } = props
 
   useEffect(() => {
     if (id) {
-      axios.get(`https://dummyjson.com/users/${id}`)
+      axios.get(`https://dummyjson.com/posts/${id}`)
         .then(response => {
           setRenderModal(true);
-          const userData = response.data.users || response.data;
-          setUser(userData);
+          const postData = response.data.posts || response.data;
+          setPost(postData);
         })
         .catch(error => {
           console.error('Error fetching user:', error);
@@ -26,7 +26,7 @@ const ReadModal = (props) => {
   const handleClose = () => {
     setRenderModal(false);
     onHide();
-    setUser([]);
+    setPost([]);
   };
 
   return (
@@ -47,14 +47,14 @@ const ReadModal = (props) => {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        {user ? (
+        {post ? (
           <div className='d-flex flex-column justify-content-center'>
-           <p>First Name: {user.firstName}</p>
-            <p>Last Name: {user.lastName}</p>
-            <p>Age: {user.age}</p>
+           <h5>Title: {post.title}</h5>
+            <p>Comment: {post.body}</p>
+            <p>Reactions: {post.reactions}</p>
           </div>
         ) : (
-          <p>No user available</p>
+          <p>No post available</p>
         )}
       </Modal.Body>
       <Modal.Footer>

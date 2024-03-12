@@ -9,27 +9,31 @@ import DashboardMain from './DashboardMain';
 import DashboardProjects from './DashboardProjects';
 import DashboardCreate from './CRUD/Create';
 import DashboardUpdate from './CRUD/Update';
-import Table from './Table/Table';
-import TableUpdate from './Table/TableCRUD/Update';
+import UsersTable from './Table/Table';
+import UserCreate from './Table/TableCRUD/Create';
+import UserUpdate from './Table/TableCRUD/Update';
+import PostsTable from './Cards/PostTable';
+import PostCreate from './Cards/Create';
+import PostUpdate from './Cards/Update';
 
 function DashboardBody() {
-    const [profile, setProfile] = useState(false)
-    const dropdownRef = useRef(null);
+  const [profile, setProfile] = useState(false)
+  const dropdownRef = useRef(null);
 
-    const handleClickOutside = (e) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
-        setProfile(false);
-      }
+  const handleClickOutside = (e) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+      setProfile(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
     };
-  
-    useEffect(() => {
-      document.addEventListener("mousedown", handleClickOutside);
-      return () => {
-        document.removeEventListener("mousedown", handleClickOutside);
-      };
-    }, []);
-  
-  
+  }, []);
+
+
 
 
 
@@ -37,7 +41,7 @@ function DashboardBody() {
     <section className='section-body m-0 p-0 d-flex flex-column col-10 '>
 
       <header className=' container-xxl  h-auto p-0 row d-flex m-auto justify-content-center align-items-center flex-nowrap'>
-   
+
         <div className='header px-3 d-flex align-items-center justify-content-end'>
           <Icon
             onClick={() => setProfile(!profile)}
@@ -46,10 +50,10 @@ function DashboardBody() {
             icon={user_circle} size={24}>
           </Icon>
           {profile ?
-            <div 
-            className='card position-absolute '
-            ref={dropdownRef} 
-            style={{ right: "20px", top: "50px", zIndex: "5" }}>
+            <div
+              className='card position-absolute '
+              ref={dropdownRef}
+              style={{ right: "20px", top: "50px", zIndex: "5" }}>
               <div className='card-body p-0 d-flex flex-column text-center'
                 style={{ minWidth: "100px", height: "auto" }}>
                 <div className='p-2 w-100 border-bottom'>
@@ -65,15 +69,21 @@ function DashboardBody() {
         </div>
       </header>
       <main className='w-100'
-      style={{ height: "85vh" }}>
+        style={{ height: "85vh" }}>
         <div className='container-xxl p-3 bg-light row d-flex m-auto h-100 flex-nowrap align-items-start'>
-        <Routes>
-            <Route path='/' element={<DashboardMain />} />
+          <Routes>
+            <Route path='home' element={<DashboardMain />} />
             <Route path='projects' element={<DashboardProjects />} />
-          <Route path='projects/create' element={<DashboardCreate/>} />
-          <Route path='projects/update/:id' element={<DashboardUpdate/>} />
-          <Route path='table' element={<Table/>} />
-          <Route path='table/update/:userid' element={<TableUpdate/>} />
+            <Route path='projects/create' element={<DashboardCreate />} />
+            <Route path='projects/update/:id' element={<DashboardUpdate />} />
+
+            <Route path='users' element={<UsersTable />} />
+            <Route path='users/create' element={<UserCreate />} />
+            <Route path='users/update/:userid' element={<UserUpdate />} />
+
+            <Route path='posts' element={<PostsTable />} />
+            <Route path='posts/create' element={<PostCreate />} />
+            <Route path='posts/update/:postId' element={<PostUpdate />} />
           </Routes>
         </div>
       </main>

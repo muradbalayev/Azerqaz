@@ -1,13 +1,20 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2';
-const UserCreate = () => {
+const PostCreate = () => {
     const [newData, setNewData] = useState({
-        firstName: '',
-        lastName: '',
-        age: ''
+        posts: [
+            {
+                title: '',
+                body: '',
+                userId: '',
+                reactions: ''
+            }
+        ]
     })
+    const [users, setUsers] = useState([]);
+
 
     const navigate = useNavigate();
 
@@ -32,15 +39,15 @@ const UserCreate = () => {
     };
 
     const saveData = () => {
-        if (!newData.firstName || !newData.lastName || !newData.age) {
+        if (!newData.title || !newData.body || !newData.userId || !newData.reactions) {
             alert('Bütün xanaları doldurun!');
             return;
         }
 
-        axios.post('https://dummyjson.com/users/add', newData)
+        axios.post('https://dummyjson.com/posts/add', newData)
             .then(response => {
-                console.log('User added successfully:', response.data);
-                navigate('/dashboard/users');
+                console.log('Post added successfully:', response.data);
+                navigate('/dashboard/posts');
                 Swal.fire({
                     title: "Yadda Saxlanıldı!",
                     icon: "success"
@@ -54,11 +61,32 @@ const UserCreate = () => {
 
 
     const handleBack = () => {
-        navigate('/dashboard/users')
+        navigate('/dashboard/posts')
     }
 
 
-    const isFormValid = newData.firstName && newData.lastName && newData.age;
+    const isFormValid = newData.title && newData.body && newData.userId && newData.reactions;
+
+    //UserId GET
+    useEffect(() => {
+        axios.get('https://dummyjson.com/users')
+            .then(response => {
+                console.log("Data from API:", response.data);
+                if (response.data && response.data.users && Array.isArray(response.data.users)) {
+                    const usersData = response.data.users.map(user => ({
+                        id: user.id,
+                        firstName: user.firstName,
+                        lastName: user.lastName,
+                    }));
+                    setUsers(usersData);
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    }, []);
+
+
 
     return (
         <div className='card p-0 w-100 h-100'>
@@ -70,27 +98,38 @@ const UserCreate = () => {
                 <div className='card-body'
                     style={{ overflowY: "visible" }}>
                     <div className='form-group p-2'>
-                        <label>First Name<span className='text-danger'>*</span></label>
+                        <label>Title<span className='text-danger'>*</span></label>
                         <input type="text"
-                            name='firstName'
-                            value={newData.firstName}
+                            name='title'
+                            value={newData.title}
                             onChange={handleChange}
                             className="form-control" />
                     </div>
                     <div className='form-group p-2'>
-                        <label>Last Name<span className='text-danger'>*</span></label>
-                        <input
-                            name='lastName'
-                            value={newData.lastName}
+                        <label>Body<span className='text-danger'>*</span></label>
+                        <textarea
+                            name='body'
+                            value={newData.body}
                             onChange={handleChange}
                             type="text"
                             className="form-control" />
                     </div>
+                    <div className="form-group p-2">
+                        <label>UserId<span className='text-danger'>*</span></label>
+                        <select className="form-control"
+                            name='userId'
+                            onChange={handleChange}>
+                                <option disabled selected>Select User</option>
+                            {users.map(user => (
+                                <option key={user.id} value={user.id}>{user.firstName + ' ' + user.lastName}</option>
+                            ))}
+                        </select>
+                    </div>
                     <div className='form-group p-2'>
-                        <label>Age<span className='text-danger'>*</span></label>
+                        <label>Reactions<span className='text-danger'>*</span></label>
                         <input
-                            name='age'
-                            value={newData.age}
+                            name='reactions'
+                            value={newData.reactions}
                             onChange={handleChange}
                             type="number"
                             className="form-control" />
@@ -111,4 +150,4 @@ const UserCreate = () => {
     )
 }
 
-export default UserCreate
+export default PostCreate

@@ -28,6 +28,11 @@
     background-color: #555; 
   }
 
+.active{
+    background-color: #848484;
+}
+
+
 :root {
     --sidebar-width: 15%;
 }
@@ -135,6 +140,13 @@
         }
     }
 }
+
+// Tableda Action hissenin style kodu
+.iteyOh , .deUxZV {
+    display: flex;
+    align-items: center;
+    justify-content: center!important;
+    }
 
 .custom-backdrop {
     background-color: rgba(0, 0, 0, 0.5);

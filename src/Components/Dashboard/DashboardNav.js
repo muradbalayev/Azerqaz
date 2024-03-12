@@ -1,15 +1,14 @@
 import React from 'react'
 import Icon from 'react-icons-kit'
 import { home } from 'react-icons-kit/fa/home'
-// import { ic_settings } from 'react-icons-kit/md/ic_settings'
-import {table} from 'react-icons-kit/fa/table'
+import {users} from 'react-icons-kit/fa/users'
 import { book } from 'react-icons-kit/ikons/book'
 import logo from "../Img/azerqaz.png";
 import { arrow_left } from 'react-icons-kit/ikons/arrow_left'
 import { arrow_right } from 'react-icons-kit/ikons/arrow_right'
 import {image} from 'react-icons-kit/icomoon/image'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 const DashboardNav = () => {
 
   const [collapsed, setCollapsed] = useState(false);
@@ -32,31 +31,31 @@ const DashboardNav = () => {
       </header>
       <nav className='d-flex flex-column justify-content-start align-items-center p-0'>
         <div className='nav-list d-flex flex-column w-100 align-items-center'>
-          <Link to={"/dashboard"} className='nav-link d-flex w-100 border-0 gap-4 flex-nowrap py-3 px-3 text-light justify-content-lg-start justify-content-center align-items-center'
+          <NavLink to={"/dashboard/home"} className='nav-link d-flex w-100 border-0 gap-4 flex-nowrap py-3 px-3 text-light justify-content-lg-start justify-content-center align-items-center'
             style={{ borderRadius: "0", flexDirection: "row" }}>
             <Icon className='d-flex' icon={home} size={18}></Icon>
             <p style={{ fontSize: "0.8rem", display: hideParagraphs ? 'none' : 'block' }}
               className='m-0 text-nowrap resp d-none'>Ana Sehife </p>
-          </Link>
-          <Link to={"/dashboard/table"} className='nav-link d-flex w-100 border-0 gap-4 flex-nowrap py-3 px-3 text-light justify-content-lg-start justify-content-center align-items-center'
+          </NavLink>
+          <NavLink to={"/dashboard/users"} activeClassName="active" className='nav-link d-flex w-100 border-0 gap-4 flex-nowrap py-3 px-3 text-light justify-content-lg-start justify-content-center align-items-center'
             style={{ borderRadius: "0", flexDirection: "row" }}>
-            <Icon className='d-flex' icon={table} size={18}></Icon>
+            <Icon className='d-flex' icon={users} size={18}></Icon>
             <p style={{ fontSize: "0.8rem", display: hideParagraphs ? 'none' : 'block' }}
-              className='m-0 text-nowrap resp d-none'>Table </p>
-          </Link>
+              className='m-0 text-nowrap resp d-none'>Users </p>
+          </NavLink>
 
-          <Link to={"/dashboard/projects"} className='nav-link d-flex w-100 border-0 gap-4 flex-nowrap py-3 px-3 text-light justify-content-lg-start justify-content-center align-items-center'
+          <NavLink to={"/dashboard/projects"} activeClassName="active" className='nav-link d-flex w-100 border-0 gap-4 flex-nowrap py-3 px-3 text-light justify-content-lg-start justify-content-center align-items-center'
             style={{ borderRadius: "0", flexDirection: "row" }}>
             <Icon className='d-flex' icon={book} size={18}></Icon>
             <p style={{ fontSize: "0.8rem", display: hideParagraphs ? 'none' : 'block' }}
               className='m-0 text-nowrap resp d-none'>Layihələr</p>
-          </Link>
-          <Link to={"/dashboard/cards"} className='nav-link d-flex w-100 border-0 gap-4 flex-nowrap py-3 px-3 text-light justify-content-lg-start justify-content-center align-items-center'
+          </NavLink>
+          <NavLink to={"/dashboard/posts"} activeClassName="active" className='nav-link d-flex w-100 border-0 gap-4 flex-nowrap py-3 px-3 text-light justify-content-lg-start justify-content-center align-items-center'
             style={{ borderRadius: "0", flexDirection: "row" }}>
             <Icon className='d-flex' icon={image} size={18}></Icon>
             <p style={{ fontSize: "0.8rem", display: hideParagraphs ? 'none' : 'block' }}
-              className='m-0 text-nowrap resp d-none'>Cards</p>
-          </Link>
+              className='m-0 text-nowrap resp d-none'>Posts</p>
+          </NavLink>
 
 
         </div>

@@ -6,16 +6,16 @@ import { ic_create } from 'react-icons-kit/md/ic_create';
 import { trashO } from 'react-icons-kit/fa/trashO';
 import { ic_remove_red_eye } from 'react-icons-kit/md/ic_remove_red_eye'
 import Swal from 'sweetalert2';
-import ReadModal from './TableCRUD/Read';
+import ReadModal from './Read';
 import {  Link, useNavigate } from 'react-router-dom';
 import { ic_add_box } from 'react-icons-kit/md/ic_add_box';
 
-const UsersTable = () => {
-    const [users, setUsers] = useState([]);
+const PostsTable = () => {
+    const [posts, setPosts] = useState([]);
     const [Loading, setLoading] = useState(false);
     const [search, setSearch] = useState('')
     const [filter, setFilter] = useState('')
-    const [userid, setUserid] = useState(null)
+    const [postId, setPostId] = useState(null)
     const [modalShow, setModalShow] = useState(false);
     const navigate = useNavigate()
 
@@ -26,18 +26,13 @@ const UsersTable = () => {
             sortable: true
         },
         {
-            name: "First Name",
-            selector: row => row.firstName,
+            name: "Title",
+            selector: row => row.title,
             sortable: true
         },
         {
-            name: "Last Name",
-            selector: row => row.lastName,
-            sortable: true
-        },
-        {
-            name: "Age",
-            selector: row => row.age,
+            name: "Reactions",
+            selector: row => row.reactions,
             sortable: true
         },
         {
@@ -63,18 +58,17 @@ const UsersTable = () => {
 
     // Fetch data
     useEffect(() => {
-        axios.get('https://dummyjson.com/users')
+        axios.get('https://dummyjson.com/posts')
             .then(response => {
                 console.log("Data from API:", response.data);
-                if (response.data && response.data.users && Array.isArray(response.data.users)) {
-                    const UsersDatas = response.data.users.map(user => ({
-                        id: user.id,
-                        firstName: user.firstName,
-                        lastName: user.lastName,
-                        age: user.age
+                if (response.data && response.data.posts && Array.isArray(response.data.posts)) {
+                    const PostsDatas = response.data.posts.map(post => ({
+                        id: post.id,
+                        title: post.title,
+                        reactions: post.reactions,
                     }));
-                    setUsers(UsersDatas);
-                    setFilter(UsersDatas);
+                    setPosts(PostsDatas);
+                    setFilter(PostsDatas);
                     setLoading(true);
                 }
             })
@@ -86,17 +80,17 @@ const UsersTable = () => {
 
     //Modal
     function handleModal(id) {
-        setUserid(id)
+        setPostId(id)
         setModalShow(true)
     }
 
     // Axtaris Filter
     useEffect(() => {
-        const result = users.filter((user) => {
-            return user.firstName.toLowerCase().includes(search.toLowerCase());
+        const result = posts.filter((post) => {
+            return post.title.toLowerCase().includes(search.toLowerCase());
         });
         setFilter(result);
-    }, [users, search]);
+    }, [posts, search]);
 
     // DELETE METHOD
     const handleDelete = (id) => {
@@ -111,7 +105,7 @@ const UsersTable = () => {
             confirmButtonText: "Bəli, silin!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`https://dummyjson.com/users/${id}`)
+                axios.delete(`https://dummyjson.com/posts/${id}`)
                     .then(response => {
                         console.log('Məhsul Silindi!');
                         Swal.fire({
@@ -137,9 +131,9 @@ const UsersTable = () => {
     };
 
     //Update Navigate
-    const handleUpdateClick = (userid) => {
-        setUserid(userid);
-        navigate(`/dashboard/users/update/${userid}`);
+    const handleUpdateClick = (postId) => {
+        setPostId(postId);
+        navigate(`/dashboard/posts/update/${postId}`);
     };
 
     return (
@@ -167,7 +161,7 @@ const UsersTable = () => {
                                     value={search}
                                     onChange={(event) => setSearch(event.target.value)}
                                 />
-                                <Link to={'/dashboard/users/create'}
+                                <Link to={'/dashboard/posts/create'}
                                 className='d-flex align-items-center'
                                 style={{ borderRadius: '25%' }}>
                                 <Icon icon={ic_add_box} size={40}></Icon>
@@ -181,10 +175,10 @@ const UsersTable = () => {
             <ReadModal
                 show={modalShow}
                 onHide={() => { setModalShow(false); }}
-                id={userid}
+                id={postId}
             />
         </div>
     )
 }
 
-export default UsersTable
+export default PostsTable
