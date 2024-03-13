@@ -84,7 +84,7 @@ return error
 
         <button className='btn btn-primary w-100 mt-3'><i className="fa-solid fa-right-to-bracket me-2" type="submit"></i>QEYDIYYATDAN KEÇ</button>
         <div>
-          Qeydiyyatdan keçmisiniz?  <Link style={{textDecoration: "none" }} to="/home">Daxil olun</Link>
+          Qeydiyyatdan keçmisiniz?  <Link style={{textDecoration: "none" }} to="/">Daxil olun</Link>
         </div>
       </div>
     </form>

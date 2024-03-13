@@ -53,6 +53,11 @@
         width: 4%;
     }
 
+    
+&:hover {
+    width: var(--sidebar-width);
+  }
+
 
     header {
         height: 10vh;
@@ -71,19 +76,15 @@
         .nav-link {
             transition: .3s ease;
 
-            p {
-                display: block;
-            }
+            // p {
+            //     display: block;
+            // }
 
         }
 
-        .collapsed .nav-link {
-            .paragraphs {
-                display: none;
-
-                /* Disable paragraphs when sidebar is collapsed */
-            }
-        }
+        // .collapsed .nav-link p {
+        //     display: none;
+        // }
 
         .nav-link:hover {
             background-color: gray
