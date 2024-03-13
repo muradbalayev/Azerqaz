@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2';
+import Select from 'react-select'
 const PostCreate = () => {
     const [newData, setNewData] = useState({
         posts: [
@@ -20,8 +21,15 @@ const PostCreate = () => {
 
 
     const handleChange = (e) => {
-        setNewData({ ...newData, [e.target.name]: e.target.value })
-    }
+        const { name, value } = e.target;
+        setNewData({ ...newData, [name]: value });
+    };
+
+    const handleUserSelect = (selectedOption) => {
+        setNewData({ ...newData, userId: selectedOption.value });
+    };
+
+
 
     const handleSave = () => {
         Swal.fire({
@@ -43,6 +51,7 @@ const PostCreate = () => {
             alert('Bütün xanaları doldurun!');
             return;
         }
+
 
         axios.post('https://dummyjson.com/posts/add', newData)
             .then(response => {
@@ -74,9 +83,8 @@ const PostCreate = () => {
                 console.log("Data from API:", response.data);
                 if (response.data && response.data.users && Array.isArray(response.data.users)) {
                     const usersData = response.data.users.map(user => ({
-                        id: user.id,
-                        firstName: user.firstName,
-                        lastName: user.lastName,
+                        value: user.id,
+                        label: `${user.firstName} ${user.lastName}`
                     }));
                     setUsers(usersData);
                 }
@@ -87,16 +95,14 @@ const PostCreate = () => {
     }, []);
 
 
-
     return (
         <div className='card p-0 w-100 h-100'>
             <div className="card-header">
                 Yarat
             </div>
-            <form className=' d-flex justify-content-between flex-column h-100'>
+            <form className='d-flex justify-content-between flex-column h-100'>
 
-                <div className='card-body'
-                    style={{ overflowY: "visible" }}>
+                <div className='card-body' style={{overflow:"visible"}}>
                     <div className='form-group p-2'>
                         <label>Title<span className='text-danger'>*</span></label>
                         <input type="text"
@@ -114,16 +120,15 @@ const PostCreate = () => {
                             type="text"
                             className="form-control" />
                     </div>
-                    <div className="form-group p-2">
+                    <div className="form-group" >
                         <label>UserId<span className='text-danger'>*</span></label>
-                        <select className="form-control"
-                            name='userId'
-                            onChange={handleChange}>
-                                <option disabled selected>Select User</option>
-                            {users.map(user => (
-                                <option key={user.id} value={user.id}>{user.firstName + ' ' + user.lastName}</option>
-                            ))}
-                        </select>
+                            <Select
+                                className='p-2'
+                                options={users}
+                                name='userId'
+                                onChange={handleUserSelect}
+                                placeholder='Select User'
+                            />
                     </div>
                     <div className='form-group p-2'>
                         <label>Reactions<span className='text-danger'>*</span></label>
@@ -135,8 +140,7 @@ const PostCreate = () => {
                             className="form-control" />
                     </div>
                 </div>
-
-                <div className='card-footer d-flex justify-content-between'>
+                <div className='card-footer d-flex justify-content-between' >
                     <button onClick={handleBack}
                         className='btn btn-outline-danger d-flex align-items-center'>
                         Geri

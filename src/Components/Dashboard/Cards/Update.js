@@ -2,6 +2,8 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import Swal from 'sweetalert2';
+import Select from 'react-select'
+
 const PostUpdate = () => {
 
     const { postId } = useParams();
@@ -83,6 +85,32 @@ const PostUpdate = () => {
 
     const isFormValid = newData.title && newData.body && newData.userId && newData.reactions;
 
+    
+    //UserId GET
+    const [users, setUsers] = useState([]);
+
+    const handleUserSelect = (selectedOption) => {
+        setNewData({ ...newData, userId: selectedOption.value });
+    };
+
+
+    useEffect(() => {
+        axios.get('https://dummyjson.com/users')
+            .then(response => {
+                console.log("Data from API:", response.data);
+                if (response.data && response.data.users && Array.isArray(response.data.users)) {
+                    const usersData = response.data.users.map(user => ({
+                        value: user.id,
+                        label: `${user.firstName} ${user.lastName}`
+                    }));
+                    setUsers(usersData);
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    }, []);
+
     return (
         <div className='card p-0 w-100 h-100'>
             <div className="card-header">
@@ -110,15 +138,16 @@ const PostUpdate = () => {
                                 type="text"
                                 className="form-control" />
                         </div>
-                        <div className="form-group p-2">
+                        <div className="form-group" >
                         <label>UserId<span className='text-danger'>*</span></label>
-                        <select className="form-control"
-                            name='brand'
-                            value={newData.userId}
-                            onChange={handleChange}>
-                            <option disabled value={""}>UserId</option>
-                            <option>{newData.userId}</option>
-                        </select>
+                            <Select
+                                className='p-2'
+                                options={users}
+                                value={users.find(user => user.value === newData.userId)}
+                                name='userId'
+                                onChange={handleUserSelect}
+                                placeholder='Select User'
+                            />
                     </div>
                         <div className='form-group p-2'>
                         <label>Reactions<span className='text-danger'>*</span></label>
