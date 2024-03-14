@@ -148,7 +148,7 @@ const UsersTable = () => {
                 style={{ minHeight: "40px" }}>
                 Table
             </div>
-            <div className='card-body overflow-y-scroll'>
+            <div className='card-body p-0 overflow-y-scroll'>
                 {
                     Loading ?
                         <DataTable

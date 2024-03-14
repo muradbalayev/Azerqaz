@@ -7,8 +7,8 @@ function AuthLayout({children}) {
 
   return (
     <main>
-      <div className='container-xxl p-0 row d-flex m-auto w-100 justify-content-center align-items-center'>
-        <div className='container_left bg-light col-md-6 h-100 d-flex flex-column justify-content-center align-items-center'>
+      <div className='container-fluid p-0 row d-flex m-auto w-100 justify-content-center align-items-center'>
+        <div className='container_left p-0 bg-light col-md-6 h-100 d-flex flex-column justify-content-center align-items-center'>
              {children}
         </div>
         <div className='container_right col-md-6 p-0 d-none d-md-flex h-100 d-flex text-center justify-content-center align-items-center'>

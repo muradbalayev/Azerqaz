@@ -5,10 +5,11 @@
     text-decoration: none;
 }
 
-.container-xxl {
-
+.container-fluid {
     height: 100vh;
+    max-width: 1920px;
 
+   
     .container_right {
         position: relative;
         overflow: hidden;

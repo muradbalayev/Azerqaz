@@ -76,11 +76,11 @@ const navigate = useNavigate();
 
   return (
     <>
-      <div className='card overflow-hidden h-100 p-0'>
+      <div className='card overflow-y-scroll h-100 p-0'>
         <div className='card-header'>
           Layihələr
         </div>
-        <div className='card-body overflow-y-scroll h-100 p-0 m-0 d-flex flex-column justify-content-between align-items-center'>
+        <div className='card-body h-100 p-0 m-0 d-flex flex-column justify-content-between align-items-center'>
           <section
             className=' w-100 header p-0 m-0 d-flex flex-column align-items-center justify-content-start'>
             {searchable && (
