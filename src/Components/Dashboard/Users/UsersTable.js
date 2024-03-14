@@ -6,7 +6,7 @@ import { ic_create } from 'react-icons-kit/md/ic_create';
 import { trashO } from 'react-icons-kit/fa/trashO';
 import { ic_remove_red_eye } from 'react-icons-kit/md/ic_remove_red_eye'
 import Swal from 'sweetalert2';
-import ReadModal from './TableCRUD/Read';
+import ReadModal from './Read';
 import {  Link, useNavigate } from 'react-router-dom';
 import { ic_add_box } from 'react-icons-kit/md/ic_add_box';
 
@@ -154,7 +154,6 @@ const UsersTable = () => {
                         <DataTable
                             columns={columns}
                             data={filter}
-                            // selectableRow
                             pagination
                             highlightOnHover
                             responsive
@@ -162,7 +161,7 @@ const UsersTable = () => {
                             subHeaderComponent={
                                 <div className='d-flex justify-content-end align-items-center gap-3 w-100 mb-1 p-1'>
                                 <input
-                                    className='form-control w-25'
+                                    className='form-control w-50'
                                     placeholder='Search'
                                     value={search}
                                     onChange={(event) => setSearch(event.target.value)}

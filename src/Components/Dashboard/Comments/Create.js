@@ -106,7 +106,7 @@ const CommentCreate = () => {
             if (response.data && response.data.posts && Array.isArray(response.data.posts)) {
                 const postsData = response.data.posts.map(post => ({
                     value: post.id,
-                    label: post.title
+                    label: `${post.id}: ${post.title}`
                 }));
                 setPosts(postsData)
             }

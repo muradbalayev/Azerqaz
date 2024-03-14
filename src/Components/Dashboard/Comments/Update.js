@@ -96,13 +96,13 @@ const CommentUpdate = () => {
     }
 
     useEffect(() => {
-        axios.get('https://dummyjson.com/comments')
+        axios.get('https://dummyjson.com/comments?limit=0')
             .then(response => {
                 console.log("Data from API:", response.data);
                 if (response.data && response.data.comments  && Array.isArray(response.data.comments)) {
                     const usersData = response.data.comments.map(comment => ({
                         value: comment.user.id,
-                        label: comment.user.username
+                        label: `${comment.id}: ${comment.user.username}`
                     }));
                     setUsers(usersData);
                 }
@@ -115,13 +115,13 @@ const CommentUpdate = () => {
     const [posts, setPosts] = useState([])
     // GET PostID
     useEffect(() => {
-        axios.get('https://dummyjson.com/posts')
+        axios.get('https://dummyjson.com/posts?limit=0')
             .then(response => {
                 console.log(response.data);
                 if (response.data && response.data.posts && Array.isArray(response.data.posts)) {
                     const postsData = response.data.posts.map(post => ({
                         value: post.id,
-                        label: post.title
+                        label: `${post.id}: ${post.title}`
                     }));
                     setPosts(postsData)
                 }

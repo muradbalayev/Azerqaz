@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ProjectProducts from './CRUD/ProjectProducts';
+import ProjectProducts from './ProductsTable';
 import axios from 'axios';
 
 const DashboardProjects = () => {
