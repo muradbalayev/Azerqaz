@@ -65,7 +65,7 @@ const DashboardCreate = () => {
     const isFormValid = newData.title && newData.price && newData.brand && newData.category && newData.rating && newData.stock;
 
     return (
-        <div className='card p-0 w-100 h-100'>
+        <div className='card  p-0 w-100 h-100'>
             <div className="card-header">
                 Yarat
             </div>

@@ -12,9 +12,12 @@ import DashboardUpdate from './CRUD/Update';
 import UsersTable from './Table/Table';
 import UserCreate from './Table/TableCRUD/Create';
 import UserUpdate from './Table/TableCRUD/Update';
-import PostsTable from './Cards/PostTable';
-import PostCreate from './Cards/Create';
-import PostUpdate from './Cards/Update';
+import PostsTable from './Posts/PostTable';
+import PostCreate from './Posts/Create';
+import PostUpdate from './Posts/Update';
+import CommentTable from './Comments/CommentTable';
+import CommentCreate from './Comments/Create';
+import CommentUpdate from './Comments/Update';
 
 function DashboardBody() {
   const [profile, setProfile] = useState(false)
@@ -38,9 +41,9 @@ function DashboardBody() {
 
 
   return (
-    <section className='section-body m-0 p-0 d-flex flex-column col-10 '>
+    <section className='section-body m-0 p-0 d-flex flex-column '>
 
-      <header className=' container-xxl  h-auto p-0 row d-flex m-auto justify-content-center align-items-center flex-nowrap'>
+      <header className=' w-100  h-auto p-0 row d-flex m-auto justify-content-center align-items-center flex-nowrap'>
 
         <div className='header px-3 d-flex align-items-center justify-content-end'>
           <Icon
@@ -70,7 +73,7 @@ function DashboardBody() {
       </header>
       <main className='w-100'
         style={{ height: "85vh" }}>
-        <div className='container-xxl p-3 bg-light row d-flex m-auto h-100 flex-nowrap align-items-start'>
+        <div className='w-100 p-3 bg-light row d-flex m-auto h-100 flex-nowrap align-items-start'>
           <Routes>
             <Route path='home' element={<DashboardMain />} />
             <Route path='projects' element={<DashboardProjects />} />
@@ -84,10 +87,16 @@ function DashboardBody() {
             <Route path='posts' element={<PostsTable />} />
             <Route path='posts/create' element={<PostCreate />} />
             <Route path='posts/update/:postId' element={<PostUpdate />} />
+
+            <Route path='comments' element={<CommentTable/>} />
+            <Route path='comments/create' element={<CommentCreate/>} />
+            <Route path='comments/update/:commentId' element={<CommentUpdate />} />
+
+
           </Routes>
         </div>
       </main>
-      <footer className='w-100 container-xxl p-0'>
+      <footer className='w-100 p-0'>
 
         <div className='footer h-100 d-flex justify-content-end align-items-center text-center'>
           <p className='px-3 m-0'>Powered by <span className='text-decoration-underline text-primary'>Murad Balazade</span></p>

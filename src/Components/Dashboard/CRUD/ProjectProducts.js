@@ -76,16 +76,15 @@ const navigate = useNavigate();
 
   return (
     <>
-      <div className='card h-100 p-0'>
+      <div className='card overflow-hidden h-100 p-0'>
         <div className='card-header'>
           Layihələr
         </div>
-        <div className='card-body h-100 p-0 m-0 d-flex flex-column justify-content-between align-items-center'>
+        <div className='card-body overflow-y-scroll h-100 p-0 m-0 d-flex flex-column justify-content-between align-items-center'>
           <section
-            style={{ overflowY: "scroll" }}
             className=' w-100 header p-0 m-0 d-flex flex-column align-items-center justify-content-start'>
             {searchable && (
-              <div style={{ minHeight: "50px" }} className='container-md d-flex input-group gap-2 m-2 p-2 w-100 align-items-center justify-content-center text-center'>
+              <div style={{ minHeight: "50px" }} className=' d-flex input-group gap-2 m-2 p-2 w-100 align-items-center justify-content-center text-center'>
                 <input
                   style={{ maxHeight: "60px" }}
                   value={search}

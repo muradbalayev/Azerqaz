@@ -7,6 +7,7 @@ import logo from "../Img/azerqaz.png";
 import { arrow_left } from 'react-icons-kit/ikons/arrow_left'
 import { arrow_right } from 'react-icons-kit/ikons/arrow_right'
 import {image} from 'react-icons-kit/icomoon/image'
+import {message} from 'react-icons-kit/entypo/message'
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 const DashboardNav = () => {
@@ -68,6 +69,12 @@ const DashboardNav = () => {
             <Icon className='d-flex' icon={image} size={18}></Icon>
             <p style={{ fontSize: "0.8rem", display: hideParagraphs ? 'none' : 'block' }}
               className='m-0 text-nowrap resp d-none'>Posts</p>
+          </NavLink>
+          <NavLink to={"/dashboard/comments"} activeclassname="active" className='nav-link d-flex w-100 border-0 gap-4 flex-nowrap py-3 px-3 text-light justify-content-lg-start justify-content-center align-items-center'
+            style={{ borderRadius: "0", flexDirection: "row" }}>
+            <Icon className='d-flex' icon={message} size={18}></Icon>
+            <p style={{ fontSize: "0.8rem", display: hideParagraphs ? 'none' : 'block' }}
+              className='m-0 text-nowrap resp d-none'>Comments</p>
           </NavLink>
 
 

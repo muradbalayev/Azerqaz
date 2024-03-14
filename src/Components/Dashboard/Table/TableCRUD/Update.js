@@ -78,7 +78,7 @@ const UserUpdate = () => {
     const isFormValid = newData.firstName && newData.lastName && newData.age;
 
     return (
-        <div className='card p-0 w-100 h-100'>
+        <div className='card overflow-y-scroll p-0 w-100 h-100'>
             <div className="card-header">
                 Dəyişiklik Et
             </div>

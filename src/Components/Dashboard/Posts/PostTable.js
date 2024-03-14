@@ -156,7 +156,7 @@ const PostsTable = () => {
                             subHeaderComponent={
                                 <div className='d-flex justify-content-end align-items-center gap-3 w-100 mb-1 p-1'>
                                 <input
-                                    className='form-control w-25'
+                                    className='form-control w-50 '
                                     placeholder='Search'
                                     value={search}
                                     onChange={(event) => setSearch(event.target.value)}

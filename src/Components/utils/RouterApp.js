@@ -10,9 +10,12 @@ import DashboardUpdate from "../Dashboard/CRUD/Update";
 import UserCreate from "../Dashboard/Table/TableCRUD/Create";
 import UsersTable from "../Dashboard/Table/Table";
 import UserUpdate from "../Dashboard/Table/TableCRUD/Update";
-import PostCreate from "../Dashboard/Cards/Create";
-import PostsTable from "../Dashboard/Cards/PostTable";
-import PostUpdate from "../Dashboard/Cards/Update";
+import PostCreate from "../Dashboard/Posts/Create";
+import PostsTable from "../Dashboard/Posts/PostTable";
+import PostUpdate from "../Dashboard/Posts/Update";
+import CommentTable from "../Dashboard/Comments/CommentTable";
+import CommentCreate from "../Dashboard/Comments/Create";
+import CommentUpdate from "../Dashboard/Comments/Update";
 export const RouterApp = createBrowserRouter([
   {
     path: "/",
@@ -70,7 +73,20 @@ export const RouterApp = createBrowserRouter([
       {
         path: 'posts/update/:postId',
         element: <PostUpdate />
-      }
+      },
+      {
+        path: 'comments',
+        element: <CommentTable/>
+      },
+      {
+        path: 'comments/create',
+        element: <CommentCreate/>
+      },
+      {
+        path: 'comments/update/:commentId',
+        element: <CommentUpdate />
+      },
+
 
     ],
   }

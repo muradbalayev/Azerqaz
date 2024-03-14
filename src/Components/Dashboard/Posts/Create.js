@@ -96,7 +96,7 @@ const PostCreate = () => {
 
 
     return (
-        <div className='card p-0 w-100 h-100'>
+        <div className='card overflow-y-scroll p-0 w-100 h-100'>
             <div className="card-header">
                 Yarat
             </div>
