@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { Navigate, createBrowserRouter } from "react-router-dom";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import Success from "../Pages/Success";
@@ -16,6 +16,17 @@ import PostUpdate from "../Dashboard/Posts/Update";
 import CommentTable from "../Dashboard/Comments/CommentTable";
 import CommentCreate from "../Dashboard/Comments/Create";
 import CommentUpdate from "../Dashboard/Comments/Update";
+
+const isAuthenticated = () => {
+  return localStorage.getItem("token") !== null;
+};
+
+// Private Route component to handle authentication checks
+const PrivateRoute = ({ element, ...rest }) => {
+  return isAuthenticated() ? element : <Navigate to="/" replace />;
+};
+
+
 export const RouterApp = createBrowserRouter([
   {
     path: "/",
@@ -32,7 +43,7 @@ export const RouterApp = createBrowserRouter([
   },
   {
     path: '/dashboard/*',
-    element: <Dashboard />,
+    element: <PrivateRoute element={<Dashboard />} />,
     children: [
       {
         path: 'home',
