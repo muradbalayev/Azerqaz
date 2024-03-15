@@ -102,7 +102,7 @@ const CommentUpdate = () => {
                 if (response.data && response.data.comments  && Array.isArray(response.data.comments)) {
                     const usersData = response.data.comments.map(comment => ({
                         value: comment.user.id,
-                        label: `${comment.id}: ${comment.user.username}`
+                        label: `${comment.user.id}: ${comment.user.username}`
                     }));
                     setUsers(usersData);
                 }

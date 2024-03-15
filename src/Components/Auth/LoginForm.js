@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Form.scss';
 import { useState } from 'react';
 import { basic_eye } from 'react-icons-kit/linea/basic_eye';
@@ -11,11 +11,15 @@ import axios from 'axios';
 
 
 function LoginForm() {
-
+  
   const [values, setValues] = useState({
     username: '',
     password: ''
   });
+  
+  useEffect(() => {
+    localStorage.removeItem("token");
+  }, []);
 
   const [errors, setError] = useState({});
 
@@ -31,6 +35,8 @@ function LoginForm() {
     e.preventDefault();
     setError(Validation(values));
 
+  
+
     const payload = {
       username: values.username,
       password: values.password
@@ -39,8 +45,8 @@ function LoginForm() {
     axios
       .post("https://dummyjson.com/auth/login", payload)
       .then(response => {
-        const { token } = response.data; // Assuming the token is returned in the response data
-        localStorage.setItem("token", token); // Store token in localStorage
+        const { token } = response.data; 
+        localStorage.setItem("token", token);
         console.log(token)
         console.log(response.data);
         navigate("/dashboard/home");

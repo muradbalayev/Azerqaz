@@ -21,7 +21,6 @@ const isAuthenticated = () => {
   return localStorage.getItem("token") !== null;
 };
 
-// Private Route component to handle authentication checks
 const PrivateRoute = ({ element, ...rest }) => {
   return isAuthenticated() ? element : <Navigate to="/" replace />;
 };
