@@ -83,6 +83,7 @@ const DashboardNav = () => {
       <footer className='d-flex text-white justify-content-start align-items-center p-2'>
         {arrow ?
           <Icon style={{ cursor: "pointer" }}
+          className='d-lg-block d-none'
             onClick={() => {
               toggleSidebar();
               setArrow(false)
@@ -90,6 +91,7 @@ const DashboardNav = () => {
             icon={arrow_left}>
           </Icon> :
           <Icon style={{ cursor: "pointer" }}
+          className='d-lg-block d-none'
             onClick={() => {
               toggleSidebar();
               setArrow(true)
