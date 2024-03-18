@@ -9,18 +9,20 @@ import { Toast } from 'react-bootstrap';
 
 const ToDoList = () => {
     const [todos, setTodos] = useState([])
-    const [limit, setLimit] = useState(3);
+    const [limit, setLimit] = useState(10);
     const [newTodoText, setNewTodoText] = useState('');
     const [toast, setToast] = useState(null);
     const [showToast, setShowToast] = useState(false);
+    const [skip, setSkip] = useState(0)
 
 
     useEffect(() => {
         const fetchTodos = () => {
-            axios.get(`https://dummyjson.com/todos?limit=${limit}`)
+            axios.get(`https://dummyjson.com/todos?limit=${limit}&skip=${skip}`)
                 .then(response => {
                     console.log(response.data)
-                    setTodos(response.data.todos)
+                    setTodos(prevTodos => [...prevTodos, ...response.data.todos]);
+
                 })
                 .catch(error => {
                     console.error('Error fetching data:', error);
@@ -28,7 +30,7 @@ const ToDoList = () => {
         }
 
         fetchTodos();
-    }, [limit]);
+    }, [limit , skip]);
 
     const handleDelete = (id) => {
         Swal.fire({
@@ -74,6 +76,7 @@ const ToDoList = () => {
                 .then(response => {
                     console.log('Todo added:', response.data);
                     setNewTodoText('');
+                    setTodos(prevTodos => [response.data, ...prevTodos]);
                     setToast(response.data);
                     setShowToast(true);
                 })
@@ -103,11 +106,13 @@ const ToDoList = () => {
     };
 
     const handleShowMore = () => {
-        setLimit(prevLimit => prevLimit + 3);
+        setSkip(prevSkip => prevSkip + limit);
     };
 
+
     const handleShowLess = () => {
-        setLimit(prevLimit => Math.max(prevLimit - 3, 3));
+        setLimit(prevLimit => Math.max(prevLimit - 10, 10));
+        setSkip(prevSkip => Math.max(prevSkip - 10, 0));
     };
 
     const handleInputChange = (event) => {
