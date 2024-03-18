@@ -146,7 +146,7 @@ const CommentTable = () => {
         <div className='card p-0 h-100'>
             <div className="card-header"
                 style={{ minHeight: "40px" }}>
-                Table
+                Comments
             </div>
             <div className='card-body p-0 overflow-y-scroll'>
                 {

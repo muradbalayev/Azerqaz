@@ -4,7 +4,7 @@ import Register from "../Pages/Register";
 import Success from "../Pages/Success";
 import Dashboard from "../Pages/Dashboard";
 import DashboardProjects from "../Dashboard/Products/Products";
-import DashboardMain from "../Dashboard/DashboardMain";
+import DashboardHome from "../Dashboard/DashboardHome";
 import DashboardCreate from "../Dashboard/Products/Create";
 import DashboardUpdate from "../Dashboard/Products/Update";
 import UserCreate from "../Dashboard/Users/Create";
@@ -16,6 +16,9 @@ import PostUpdate from "../Dashboard/Posts/Update";
 import CommentTable from "../Dashboard/Comments/CommentTable";
 import CommentCreate from "../Dashboard/Comments/Create";
 import CommentUpdate from "../Dashboard/Comments/Update";
+import ToDoList from "../Dashboard/ToDo/ToDoList";
+
+
 
 const isAuthenticated = () => {
   return localStorage.getItem("token") !== null;
@@ -46,7 +49,7 @@ export const RouterApp = createBrowserRouter([
     children: [
       {
         path: 'home',
-        element: <DashboardMain />,
+        element: <DashboardHome />,
       },
       {
         path: 'projects',
@@ -96,6 +99,10 @@ export const RouterApp = createBrowserRouter([
         path: 'comments/update/:commentId',
         element: <CommentUpdate />
       },
+      {
+        path: 'todo',
+        element: <ToDoList/>
+      }
 
 
     ],

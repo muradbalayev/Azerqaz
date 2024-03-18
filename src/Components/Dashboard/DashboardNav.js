@@ -8,6 +8,7 @@ import { arrow_left } from 'react-icons-kit/ikons/arrow_left'
 import { arrow_right } from 'react-icons-kit/ikons/arrow_right'
 import {image} from 'react-icons-kit/icomoon/image'
 import {message} from 'react-icons-kit/entypo/message'
+import {tasklist} from 'react-icons-kit/oct/tasklist'
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 const DashboardNav = () => {
@@ -44,37 +45,43 @@ const DashboardNav = () => {
           }}></img>
       </header>
       <nav className='d-flex flex-column justify-content-start align-items-center p-0'>
-        <div className='nav-list d-flex flex-column w-100 align-items-center'>
+        <div className='nav-list d-flex flex-column w-100 align-items-center fw-bolder'>
           <NavLink to={"/dashboard/home"} className='nav-link d-flex w-100 border-0 gap-4 flex-nowrap py-3 px-3 text-light justify-content-lg-start justify-content-center align-items-center'
             style={{ borderRadius: "0", flexDirection: "row" }}>
             <Icon className='d-flex' icon={home} size={18}></Icon>
-            <p style={{ fontSize: "0.8rem", display: hideParagraphs ? 'none' : 'block' }}
-              className='m-0 text-nowrap resp d-none'>Ana Sehife </p>
+            <p style={{ fontSize: "0.7rem", display: hideParagraphs ? 'none' : 'block' }}
+              className='m-0 text-nowrap resp d-none'>Home </p>
           </NavLink>
           <NavLink to={"/dashboard/users"} activeclassname="active" className='nav-link d-flex w-100 border-0 gap-4 flex-nowrap py-3 px-3 text-light justify-content-lg-start justify-content-center align-items-center'
             style={{ borderRadius: "0", flexDirection: "row" }}>
             <Icon className='d-flex' icon={users} size={18}></Icon>
-            <p style={{ fontSize: "0.8rem", display: hideParagraphs ? 'none' : 'block' }}
+            <p style={{ fontSize: "0.7rem", display: hideParagraphs ? 'none' : 'block' }}
               className='m-0 text-nowrap resp d-none'>Users </p>
           </NavLink>
 
           <NavLink to={"/dashboard/projects"} activeclassname="active" className='nav-link d-flex w-100 border-0 gap-4 flex-nowrap py-3 px-3 text-light justify-content-lg-start justify-content-center align-items-center'
             style={{ borderRadius: "0", flexDirection: "row" }}>
             <Icon className='d-flex' icon={book} size={18}></Icon>
-            <p style={{ fontSize: "0.8rem", display: hideParagraphs ? 'none' : 'block' }}
-              className='m-0 text-nowrap resp d-none'>Layihələr</p>
+            <p style={{ fontSize: "0.7rem", display: hideParagraphs ? 'none' : 'block' }}
+              className='m-0 text-nowrap resp d-none'>Products</p>
           </NavLink>
           <NavLink to={"/dashboard/posts"} activeclassname="active" className='nav-link d-flex w-100 border-0 gap-4 flex-nowrap py-3 px-3 text-light justify-content-lg-start justify-content-center align-items-center'
             style={{ borderRadius: "0", flexDirection: "row" }}>
             <Icon className='d-flex' icon={image} size={18}></Icon>
-            <p style={{ fontSize: "0.8rem", display: hideParagraphs ? 'none' : 'block' }}
+            <p style={{ fontSize: "0.7rem", display: hideParagraphs ? 'none' : 'block' }}
               className='m-0 text-nowrap resp d-none'>Posts</p>
           </NavLink>
           <NavLink to={"/dashboard/comments"} activeclassname="active" className='nav-link d-flex w-100 border-0 gap-4 flex-nowrap py-3 px-3 text-light justify-content-lg-start justify-content-center align-items-center'
             style={{ borderRadius: "0", flexDirection: "row" }}>
             <Icon className='d-flex' icon={message} size={18}></Icon>
-            <p style={{ fontSize: "0.8rem", display: hideParagraphs ? 'none' : 'block' }}
+            <p style={{ fontSize: "0.7rem", display: hideParagraphs ? 'none' : 'block' }}
               className='m-0 text-nowrap resp d-none'>Comments</p>
+          </NavLink>
+          <NavLink to={"/dashboard/todo"} activeclassname="active" className='nav-link d-flex w-100 border-0 gap-4 flex-nowrap py-3 px-3 text-light justify-content-lg-start justify-content-center align-items-center'
+            style={{ borderRadius: "0", flexDirection: "row" }}>
+            <Icon className='d-flex' icon={tasklist} size={18}></Icon>
+            <p style={{ fontSize: "0.7rem", display: hideParagraphs ? 'none' : 'block' }}
+              className='m-0 text-nowrap resp d-none'>To Do List</p>
           </NavLink>
 
 

@@ -5,7 +5,6 @@ import { Link, Route, Routes } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useRef } from 'react';
-import DashboardMain from './DashboardMain';
 import DashboardProjects from './Products/Products';
 import DashboardCreate from './Products/Create';
 import DashboardUpdate from './Products/Update';
@@ -18,8 +17,13 @@ import PostUpdate from './Posts/Update';
 import CommentTable from './Comments/CommentTable';
 import CommentCreate from './Comments/Create';
 import CommentUpdate from './Comments/Update';
+import ToDoList from './ToDo/ToDoList';
+import DashboardHome from './DashboardHome';
 
 function DashboardBody() {
+// const location = useLocation()
+// const { user } = location.state
+
   const [profile, setProfile] = useState(false)
   const dropdownRef = useRef(null);
 
@@ -43,7 +47,7 @@ function DashboardBody() {
   return (
     <section className='section-body m-0 p-0 d-flex flex-column '>
 
-      <header className=' w-100  h-auto p-0 row d-flex m-auto justify-content-center align-items-center flex-nowrap'>
+      <header className=' w-100 p-0 row d-flex m-auto justify-content-center align-items-center flex-nowrap'>
 
         <div className='header px-3 d-flex align-items-center justify-content-end'>
           <Icon
@@ -54,17 +58,16 @@ function DashboardBody() {
           </Icon>
           {profile ?
             <div
-              className='card position-absolute '
+              className='profile position-absolute'
               ref={dropdownRef}
               style={{ right: "20px", top: "50px", zIndex: "5" }}>
-              <div className='card-body p-0 d-flex flex-column text-center'
+              <div className='p-0 d-flex flex-column text-center border'
                 style={{ minWidth: "100px", height: "auto" }}>
-                <div className='p-2 w-100 border-bottom'>
-                  <Link className='text-decoration-none w-100 text-danger link' to={"/"}>Logout</Link>
+                <div className='p-2 w-100 bg-light'>
+{/* <p className='text m-2'>User: {user}</p> */}
                 </div>
-                <div className='p-2 w-100 border-bottom'>
-                  <Link className='text-decoration-none w-100 text-danger link' to={"/"}>Parameters</Link>
-                </div>
+                  <Link className='text-decoration-none text-bg-danger p-2' to={"/"}>Logout</Link>
+               
 
               </div>
             </div>
@@ -75,7 +78,7 @@ function DashboardBody() {
         style={{ height: "85vh" }}>
         <div className='w-100 p-3 bg-light row d-flex m-auto h-100 flex-nowrap align-items-start'>
           <Routes>
-            <Route path='home' element={<DashboardMain />} />
+            <Route path='home' element={<DashboardHome />} />
             <Route path='projects' element={<DashboardProjects />} />
             <Route path='projects/create' element={<DashboardCreate />} />
             <Route path='projects/update/:id' element={<DashboardUpdate />} />
@@ -88,9 +91,11 @@ function DashboardBody() {
             <Route path='posts/create' element={<PostCreate />} />
             <Route path='posts/update/:postId' element={<PostUpdate />} />
 
-            <Route path='comments' element={<CommentTable/>} />
-            <Route path='comments/create' element={<CommentCreate/>} />
+            <Route path='comments' element={<CommentTable />} />
+            <Route path='comments/create' element={<CommentCreate />} />
             <Route path='comments/update/:commentId' element={<CommentUpdate />} />
+
+            <Route path='todo' element={<ToDoList />} />
 
 
           </Routes>

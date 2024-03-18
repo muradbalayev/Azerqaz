@@ -140,7 +140,7 @@ const PostsTable = () => {
         <div className='card p-0 h-100'>
             <div className="card-header"
                 style={{ minHeight: "40px" }}>
-                Table
+                Posts
             </div>
             <div className='card-body p-0 overflow-y-scroll'>
                 {
@@ -148,7 +148,6 @@ const PostsTable = () => {
                         <DataTable
                             columns={columns}
                             data={filter}
-                            // selectableRow
                             pagination
                             highlightOnHover
                             responsive

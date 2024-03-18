@@ -11,7 +11,6 @@ import axios from 'axios';
 
 
 function LoginForm() {
-  
   const [values, setValues] = useState({
     username: '',
     password: ''
@@ -45,11 +44,12 @@ function LoginForm() {
     axios
       .post("https://dummyjson.com/auth/login", payload)
       .then(response => {
-        const { token } = response.data; 
+        const { token , username } = response.data; 
         localStorage.setItem("token", token);
         console.log(token)
         console.log(response.data);
-        navigate("/dashboard/home");
+        console.log(username)
+        navigate("/dashboard/home", { state: { user: username } });
       })
       .catch(error => {
         console.error(error);

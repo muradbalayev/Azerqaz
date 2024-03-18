@@ -1,6 +1,6 @@
 import React from 'react'
 
-const DashboardMain = () => {
+const DashboardHome = () => {
   return (
         <div className='card p-0 w-100'>
         <div className="card-header">
@@ -15,4 +15,4 @@ const DashboardMain = () => {
   )
 }
 
-export default DashboardMain
+export default DashboardHome

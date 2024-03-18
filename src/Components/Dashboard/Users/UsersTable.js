@@ -146,7 +146,7 @@ const UsersTable = () => {
         <div className='card p-0 h-100'>
             <div className="card-header"
                 style={{ minHeight: "40px" }}>
-                Table
+                Users
             </div>
             <div className='card-body p-0 overflow-y-scroll'>
                 {
