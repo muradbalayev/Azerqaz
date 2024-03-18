@@ -13,10 +13,11 @@ import ReadModal from './Read';
 const ProjectProducts = ({ head, body, searchable, totalPages, currentPage, onPageChange }) => {
 
 
+
   const [search, setSearch] = useState('')
   const [modalShow, setModalShow] = useState(false);
   const [productid, setProductId] = useState(null);
-const navigate = useNavigate();
+  const navigate = useNavigate();
 
   // ID ni Filter Etmir
   const filteredData = body.filter(products => {
@@ -51,7 +52,7 @@ const navigate = useNavigate();
               if (result.isConfirmed) {
                 window.location.reload()
               }
-            }); 
+            });
           })
           .catch(error => {
             console.error('Error deleting product:', error);
@@ -70,7 +71,7 @@ const navigate = useNavigate();
 
   const handleUpdateClick = (id) => {
     setProductId(id);
-    navigate(`/dashboard/projects/update/${id}`); 
+    navigate(`/dashboard/projects/update/${id}`);
   };
 
 
@@ -103,12 +104,12 @@ const navigate = useNavigate();
             <table className="table table-striped table-hover border-top">
               <thead>
                 <tr className='table-secondary'>
-                  {head.map((h, key) => (
-                    <th key={key} scope="col">
+                  {head.map((h, key) => ( 
+                    <th key={key} scope="col" className='fw-medium'>
                       {h.name}
                     </th>
                   ))}
-                  <th className='text-center' scope='col'>Panel</th>
+                  {/* <th className='text-center fw-medium' scope='col'>Panel</th> */}
                 </tr>
               </thead>
               <tbody>
@@ -118,20 +119,20 @@ const navigate = useNavigate();
                       <td key={`${rowIndex}_${cellIndex}`}
                         style={{ whiteSpace: "nowrap", overflow: "hidden" }}>{product}</td>
                     ))}
-                    <td className='d-flex h-100 justify-content-center gap-2'
-                      style={{ flexWrap: "nowrap" }}>
+                    <td className='h-100 text-nowrap '>
                       <Button
-                         onClick={() => handleUpdateClick(products[0])}
-                        className='btn btn-success'>
+                        onClick={() => handleUpdateClick(products[0])}
+                        className='btn m-1 btn-success'>
                         <Icon className='d-flex' icon={ic_create} />
                       </Button>
                       <Button onClick={() => handleDelete(products[0])}
-                        className='btn btn-danger'>
-                        <Icon 
+                        className='btn m-1 btn-danger'>
+                        <Icon
                           className='d-flex'
                           icon={trashO} />
                       </Button>
                       <Button key={rowIndex} variant="primary"
+                      className='m-1'
                         onClick={() => {
                           setModalShow(true);
                           setProductId(products[0]);
@@ -152,7 +153,7 @@ const navigate = useNavigate();
 
           </section>
           <nav className='w-100 bg-light d-flex align-items-center justify-content-center border-top'
-          style={{minHeight: "45px"}}>
+            style={{ minHeight: "45px" }}>
             <ul className="pagination">
               {Array.from({ length: totalPages }).map((_, index) => (
                 <li key={index} className={`page-item ${currentPage === index + 1 ? 'active' : ''}`}>

@@ -67,15 +67,7 @@
 
     .nav-link {
       transition: 0.3s ease;
-
-      // p {
-      //     display: block;
-      // }
     }
-
-    // .collapsed .nav-link p {
-    //     display: none;
-    // }
 
     .nav-link:hover {
       background-color: gray;
@@ -110,10 +102,9 @@
       color: gray;
     }
 
- p{
-  user-select: none;
-}
-
+    p {
+      user-select: none;
+    }
   }
 
   footer {
@@ -134,8 +125,9 @@
   justify-content: center !important;
 }
 
-.custom-backdrop {
-  background-color: rgba(0, 0, 0, 0.5);
+.yarl__container,
+.yarl__thumbnails_container {
+  background-color: rgba(0, 0, 0, 0.748) !important;
 }
 
 .pagination {
@@ -173,18 +165,32 @@
   box-shadow: 0px 0px 10px rgb(220 71 13);
 }
 
-
-
-.list ul{
-  transition: .1s ease;
+tr > td {
+  vertical-align: middle;
 }
 
-.list ul:hover{
-background-color: #e0dada!important;
+tr > td:nth-child(3) {
+  text-align: center;
 }
 
+tr > td:nth-child(7) {
+  text-align: center;
+}
 
+tr > th:nth-child(3) {
+  text-align: center;
+}
+tr > th:nth-child(7) {
+  text-align: center;
+}
 
+.list ul {
+  transition: 0.1s ease;
+}
+
+.list ul:hover {
+  background-color: #e0dada !important;
+}
 
 @media (min-width: 992px) {
   .resp {
@@ -194,5 +200,3 @@ background-color: #e0dada!important;
     display: none !important;
   }
 }
-
-

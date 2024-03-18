@@ -1,7 +1,9 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2';
+import Select from 'react-select'
+
 const DashboardCreate = () => {
     const [newData, setNewData] = useState({
         title: '',
@@ -10,7 +12,8 @@ const DashboardCreate = () => {
         category: '',
         discount: '',
         rating: '',
-        stock: ''
+        stock: '',
+        thumbnail: null 
     })
 
     const navigate = useNavigate();
@@ -18,6 +21,11 @@ const DashboardCreate = () => {
 
     const handleChange = (e) => {
         setNewData({ ...newData, [e.target.name]: e.target.value })
+    }
+
+    const handleThumbnailChange = (e) => {
+        const file = e.target.files[0];
+        setNewData({ ...newData, thumbnail: file });
     }
 
     const handleSave = () => {
@@ -35,13 +43,14 @@ const DashboardCreate = () => {
         });
     };
 
+    const isFormValid = newData.title && newData.price && newData.brand && newData.category && newData.rating && newData.stock && newData.thumbnail;
     const saveData = () => {
-        if (!newData.title || !newData.price || !newData.brand || !newData.category || !newData.rating || !newData.stock) {
+        if (!newData.title || !newData.price || !newData.brand || !newData.category || !newData.rating || !newData.stock || !newData.thumbnail) {
             alert('Bütün xanaları doldurun!');
             return;
         }
 
-        axios.post('https://dummyjson.com/products', newData)
+        axios.post('https://dummyjson.com/products/add', newData)
             .then(response => {
                 console.log('Product added successfully:', response.data);
                 navigate('/dashboard/projects'); 
@@ -54,7 +63,51 @@ const DashboardCreate = () => {
                 console.error('Xeta:', error);
                 alert('Xeta.');
             });
-    };
+        };
+        const [category , setCategory] = useState([])
+        const [brand , setBrand] = useState([])
+        
+        const handleCategorySelect = (selectedOption) => {
+            setNewData({ ...newData, category: selectedOption.value });
+        };
+        
+        const handleBrandSelect = (selectedOption) => {
+            setNewData({ ...newData, brand: selectedOption.value });
+        };
+        
+//Get Categories
+    useEffect(() => {
+        axios.get('https://dummyjson.com/products')
+            .then(response => {
+                console.log("Data from API:", response.data);
+                if (response.data && response.data.products && Array.isArray(response.data.products)) {
+                    const categoryData = response.data.products.map(product => ({
+                        value: product.id,
+                        label: product.category
+                    }));
+                    setCategory(categoryData);
+
+                    const brandData = response.data.products.map(product => ({
+                        value: product.id,
+                        label: product.brand
+                    }));
+                    
+                    setBrand(brandData);
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    }, []);
+
+    const uniqueCategories = category.filter((value, index, self) => {
+        return self.findIndex(c => c.label === value.label) === index;
+    });
+
+    const uniqueBrands = brand.filter((value, index, self) => {
+        return self.findIndex(c => c.label === value.label) === index;
+    });
+
 
 
     const handleBack = () => {
@@ -62,7 +115,6 @@ const DashboardCreate = () => {
     }
 
 
-    const isFormValid = newData.title && newData.price && newData.brand && newData.category && newData.rating && newData.stock;
 
     return (
         <div className='card overflow-y-scroll p-0 w-100 h-100'>
@@ -121,35 +173,33 @@ const DashboardCreate = () => {
                                 className="form-control" />
                         </div>
                     </div>
-                    <div className="form-group p-2">
+                    <div className="form-group" >
                         <label>Brand<span className='text-danger'>*</span></label>
-                        <select className="form-control"
-                            name='brand'
-                            value={newData.brand}
-                            onChange={handleChange}>
-                            <option disabled value={""}>Brendi seçin</option>
-                            <option>Apple</option>
-                            <option>Samsung</option>
-                            <option>Microsoft</option>
-                            <option>Xiaomi</option>
-                            <option>HP</option>
-                            <option>Huawei</option>
-                        </select>
+                            <Select
+                                className='p-2'
+                                options={uniqueBrands}
+                                name='brand'
+                                onChange={handleBrandSelect}
+                            />
                     </div>
-                    <div className="form-group p-2">
+                    <div className="form-group" >
                         <label>Category<span className='text-danger'>*</span></label>
-                        <select className="form-control"
-                            name='category'
-                            value={newData.category}
-                            onChange={handleChange}>
-                            <option disabled value={''}>Kateqoriyanı seçin</option>
-                            <option>smartphones</option>
-                            <option>laptops</option>
-                            <option>fragrances</option>
-                            <option>skincare</option>
-                            <option>groceries</option>
-                            <option>home-decoration</option>
-                        </select>
+                            <Select
+                                className='p-2'
+                                options={uniqueCategories}
+                                name='category'
+                                onChange={handleCategorySelect}
+                            />
+                    </div>
+                    <div className='form-group p-2'>
+                        <label>Thumbnail<span className='text-danger'>*</span></label>
+                        <input
+                            name='thumbnail'
+                            type="file"
+                            onChange={handleThumbnailChange}
+                            className="form-control"
+                            accept="image/*"
+                        />
                     </div>
                 </div>
                 <div className='card-footer d-flex justify-content-between'>

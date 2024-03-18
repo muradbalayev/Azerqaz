@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.6.7",
     "fslightbox-react": "^1.7.6",
+    "lightbox.js-react": "^1.0.2",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.4",
     "react": "^18.2.0",
@@ -25,7 +26,8 @@
     "sass": "^1.71.1",
     "sort-by": "^1.2.0",
     "sweetalert2": "^11.10.5",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yet-another-react-lightbox": "^3.17.1"
   },
   "scripts": {
     "start": "react-scripts start",

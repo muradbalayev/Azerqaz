@@ -21,16 +21,19 @@ const ToDoList = () => {
             axios.get(`https://dummyjson.com/todos?limit=${limit}&skip=${skip}`)
                 .then(response => {
                     console.log(response.data)
-                    setTodos(prevTodos => [...prevTodos, ...response.data.todos]);
-
+                    setTodos(prevTodos => {
+                        const newTodos = skip === 0 ? response.data.todos : [...prevTodos, ...response.data.todos];
+                        return newTodos;
+                    });
                 })
                 .catch(error => {
                     console.error('Error fetching data:', error);
                 });
-        }
-
+        };
+    
         fetchTodos();
-    }, [limit , skip]);
+    }, [limit, skip]);
+    
 
     const handleDelete = (id) => {
         Swal.fire({
@@ -160,7 +163,7 @@ const ToDoList = () => {
                             </button>
                         </form>
                         <div className='list w-100 p-2 m-2 mt-4 border rounded-3 '>
-                            {Array.isArray(todos) && todos.map((todo, key) => (
+    {Array.isArray(todos) && todos.map((todo, key) => (
                                 <ul key={key} className="list-group list-group-horizontal bg-transparent p-2 hover">
                                     <li className="list-group-item d-flex align-items-center rounded-0 border-0 bg-transparent">
                                         <div className="form-check">
@@ -182,7 +185,7 @@ const ToDoList = () => {
                             ))}
                         </div>
                         <div className='d-flex w-100 justify-content-center align-items-center gap-2 mt-1'>
-                            {limit > 5 && (
+                            {todos.length > 10 && (
                                 <button onClick={handleShowLess} className='btn bg-danger p-2 fw text-white' style={{ fontSize: "0.8rem" }}>
                                     <i className='fas fa-angle-up'></i>
                                 </button>
