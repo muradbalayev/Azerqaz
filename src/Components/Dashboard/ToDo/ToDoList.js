@@ -156,7 +156,7 @@ const ToDoList = () => {
                         </form>
                         <div className='list w-100 p-2 m-2 mt-4 border rounded-3 '>
                             {Array.isArray(todos) && todos.map((todo, key) => (
-                                <ul key={key} className="list-group list-group-horizontal bg-transparent p-2 ">
+                                <ul key={key} className="list-group list-group-horizontal bg-transparent p-2 hover">
                                     <li className="list-group-item d-flex align-items-center rounded-0 border-0 bg-transparent">
                                         <div className="form-check">
                                             <input

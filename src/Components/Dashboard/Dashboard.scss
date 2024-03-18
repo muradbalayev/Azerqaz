@@ -173,6 +173,19 @@
   box-shadow: 0px 0px 10px rgb(220 71 13);
 }
 
+
+
+.list ul{
+  transition: .1s ease;
+}
+
+.list ul:hover{
+background-color: #e0dada!important;
+}
+
+
+
+
 @media (min-width: 992px) {
   .resp {
     display: block !important;
