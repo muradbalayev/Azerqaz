@@ -8,7 +8,6 @@ const DashboardUpdate = () => {
     const { id } = useParams();
 
     const [newData, setNewData] = useState({
-        id: '',
         title: '',
         price: '',
         brand: '',
@@ -28,7 +27,6 @@ const DashboardUpdate = () => {
             .then(response => {
                 const data = response.data;
                 setNewData({
-                    id: data.id || '',
                     title: data.title || '',
                     price: data.price || '',
                     brand: data.brand || '',
