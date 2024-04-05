@@ -1,4 +1,4 @@
-login --> name kminchelle password: 0lelplR
+# login --> Name: kminchelle , Password: 0lelplR
 
 
 # Getting Started with Create React App
